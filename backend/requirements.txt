@@ -6,3 +6,5 @@ pydantic-settings==2.5.2
 pytest==8.3.3
 SQLAlchemy==2.0.35
 uvicorn[standard]==0.30.6
+pgvector
+google-genai
