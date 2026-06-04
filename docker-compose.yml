@@ -6,7 +6,7 @@ services:
       POSTGRES_PASSWORD: nutrition
       POSTGRES_DB: nutrition_ai
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - nutrition_ai_db:/var/lib/postgresql/data
     healthcheck:
@@ -18,6 +18,8 @@ services:
   backend:
     build:
       context: ./backend
+    env_file:
+    - ./backend/.env
     environment:
       DATABASE_URL: postgresql+psycopg://nutrition:nutrition@db:5432/nutrition_ai
       AI_PROVIDER: mock
