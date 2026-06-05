@@ -2,7 +2,6 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.db.session import get_db
-from app.providers.mock import MockAIProvider
 from app.schemas.feedback import FeedbackCreate, FeedbackRead
 from app.schemas.prediction import PredictionCreate, PredictionRead
 from app.services.feedback_service import FeedbackService
@@ -19,7 +18,6 @@ def create_prediction(
 ):
     service = PredictionService(
         db=db,
-        ai_provider=MockAIProvider(),
         retrieval_service=RetrievalService(db),
     )
     return service.create_prediction(payload.text)

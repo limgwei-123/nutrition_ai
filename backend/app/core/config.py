@@ -3,7 +3,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     database_url: str = "postgresql+psycopg://nutrition:nutrition@localhost:5432/nutrition_ai"
-    ai_provider: str = "mock"
+    ai_provider: str = "dev"
 
     gemini_api_key: str
     gemini_embedding_model: str = "gemini-embedding-001"

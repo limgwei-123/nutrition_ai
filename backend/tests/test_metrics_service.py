@@ -11,14 +11,14 @@ def test_metrics_service_calculates_from_stored_records(db_session):
         confidence=0.8,
         estimated_calories=95,
         latency_ms=10,
-        ai_provider="mock",
+        ai_provider="dev",
         status="success",
     )
     failed = Prediction(
         request_id="request-2",
         request_text="",
         latency_ms=20,
-        ai_provider="mock",
+        ai_provider="dev",
         status="failed",
         error_message="request text is required",
     )

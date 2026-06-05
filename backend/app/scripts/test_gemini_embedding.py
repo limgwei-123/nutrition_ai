@@ -1,9 +1,9 @@
 from app.core.config import settings
 
-from app.providers.gemini_embedding import VertexEmbeddingProvider
+from app.providers.gemini_embedding import GeminiEmbeddingProvider
 
 def main():
-  provider = VertexEmbeddingProvider(
+  provider = GeminiEmbeddingProvider(
     api_key=settings.gemini_api_key,
     model=settings.gemini_embedding_model,
   )

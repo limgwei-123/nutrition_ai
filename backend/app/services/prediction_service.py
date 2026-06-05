@@ -4,37 +4,41 @@ from uuid import uuid4
 from sqlalchemy.orm import Session
 
 from app.models.prediction import Prediction
-from app.providers.base import AIProvider
 from app.services.retrieval_service import RetrievalService
-
+from app.core.config import settings
 
 class PredictionService:
     def __init__(
         self,
         db: Session,
-        ai_provider: AIProvider,
         retrieval_service: RetrievalService,
     ):
         self.db = db
-        self.ai_provider = ai_provider
         self.retrieval_service = retrieval_service
+        self.ai_provider = settings.ai_provider
 
     def create_prediction(self, request_text: str) -> Prediction:
         started_at = perf_counter()
+        request_id = str(uuid4())
+
         prediction = Prediction(
-            request_id=str(uuid4()),
+            request_id=request_id,
             request_text=request_text,
-            ai_provider=self.ai_provider.name,
+            predicted_food="unknown",
+            confidence=0.0,
+            ai_provider=self.ai_provider,
+            estimated_calories=0,
             status="pending",
             latency_ms=0,
+            error_message=None,
         )
 
         try:
-            food_facts = self.retrieval_service.find_food_facts(request_text)
-            result = self.ai_provider.predict(request_text, food_facts)
-            prediction.predicted_food = result.predicted_food
-            prediction.confidence = result.confidence
-            prediction.estimated_calories = result.estimated_calories
+            retrieved_food  = self.retrieval_service.find_best_food(request_text)
+
+            prediction.predicted_food = retrieved_food.name
+            prediction.estimated_calories = retrieved_food.calories
+            prediction.confidence = retrieved_food.similarity_score
             prediction.status = "success"
         except Exception as exc:
             prediction.status = "failed"

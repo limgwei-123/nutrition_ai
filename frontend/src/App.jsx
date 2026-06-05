@@ -58,7 +58,7 @@ export default function App() {
               <p className="eyebrow">Nutrition AI</p>
               <h1>Estimate meal calories</h1>
             </div>
-            <span className="status-pill">Mock provider</span>
+            <span className="status-pill">Dev provider</span>
           </div>
 
           <PredictionForm onSubmit={handlePredict} loading={loading} />

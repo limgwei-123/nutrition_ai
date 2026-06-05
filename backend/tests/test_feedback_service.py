@@ -11,7 +11,7 @@ def test_feedback_links_to_prediction(db_session):
         confidence=0.75,
         estimated_calories=95,
         latency_ms=1,
-        ai_provider="mock",
+        ai_provider="dev",
         status="success",
     )
     db_session.add(prediction)
