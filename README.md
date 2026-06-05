@@ -6,8 +6,8 @@ The app lets a user describe a meal in plain English, retrieves the closest matc
 
 ## Demo
 
-- YouTube demo: `TODO: add YouTube demo link`
-- Live app demo: `TODO: add deployed app link`
+- YouTube demo: https://youtu.be/-8r-t1t0CpU
+- Live app demo: Current System still under development
 
 ## What This Project Shows
 
