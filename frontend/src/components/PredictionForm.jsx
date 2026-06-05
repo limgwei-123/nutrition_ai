@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function PredictionForm({ onSubmit, loading }) {
-  const [text, setText] = useState("2 eggs and toast");
+  const [text, setText] = useState("egg");
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -10,13 +10,13 @@ export default function PredictionForm({ onSubmit, loading }) {
 
   return (
     <form className="prediction-form" onSubmit={handleSubmit}>
-      <label htmlFor="meal-text">Meal text</label>
+      <label htmlFor="meal-text">Meal text(Only one)</label>
       <textarea
         id="meal-text"
         value={text}
         onChange={(event) => setText(event.target.value)}
-        placeholder="Describe a meal, such as 2 eggs and toast"
-        rows={4}
+        placeholder="Describe a meal,such as toast(current system only one food is allow)"
+        rows={1}
       />
       <button type="submit" disabled={loading || !text.trim()}>
         {loading ? "Estimating..." : "Estimate calories"}

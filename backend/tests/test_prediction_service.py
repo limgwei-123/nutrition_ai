@@ -9,7 +9,7 @@ def test_prediction_service_records_success(db_session):
         retrieval_service=RetrievalService(db_session),
     )
 
-    prediction = service.create_prediction("2 eggs and toast")
+    prediction = service.create_prediction("egg")
 
     assert prediction.request_id
     assert prediction.predicted_food == "egg, toast"
